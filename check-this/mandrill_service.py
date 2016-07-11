@@ -32,7 +32,7 @@ class MandrillService:
         return
 
 
-    def send(self, email, name, template_name, content, attachments = None):
+    def send(self, email, name, template_name, content, subject = None, attachments = None):
         '''Send the email using the defined template.
         '''
 
@@ -43,6 +43,7 @@ class MandrillService:
             'merge': True,
             'merge_language': 'handlebars',
             'to': [{'email': email, 'name': name, 'type': 'to'}],
+            'subject': subject,
         }
 
         try:

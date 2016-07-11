@@ -79,4 +79,12 @@ Summary:
             {'name': 'result', 'content': self.result},
         ]
 
-        return self.mandrill_service.send(email=self.send_resume_to, name='Service down', template_name=self.template_name, content=content, attachments = None)
+        subject = 'Service %s is down' % self.service_name
+
+        return self.mandrill_service.send(
+            email=self.send_resume_to,
+            name='Service down',
+            template_name=self.template_name,
+            subject=subject,
+            content=content,
+            attachments = None)
