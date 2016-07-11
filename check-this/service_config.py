@@ -39,7 +39,12 @@ class ServiceConfig:
 
     def check(self):
         self.date_time = datetime.now()
-        self.result =  requests.get(self.url).content
+
+        try:
+            self.result =  requests.get(self.url).content
+        except requests.exceptions.RequestException as e:
+            self.logger.error('When checking the service: %s' % e)
+            self.result = str(e)
 
         if self.result == self.expected_result:
             self.status = 'OK'
